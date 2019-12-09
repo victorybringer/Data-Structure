@@ -96,12 +96,13 @@ void display(Sqlist list){
 }
 
 
- void swap(int a,int b,int * arr) {
-    int temp=arr[a];
+ void swap(int &a,int &b) {
+    
+    int temp=a;
 
-    arr[a]=arr[b];
+    a=b;
 
-    arr[b]=temp;
+    b=temp;
 
 
 }
@@ -113,7 +114,7 @@ void display(Sqlist list){
 
         for(int i=0;i<arr.length/2;++i) {
 
-            swap(i,arr.length-1-i,arr.data);
+            swap(arr.data[i],arr.data[arr.length-1-i]);
 
         }
 
@@ -316,21 +317,24 @@ int n=arr.length-m;
 
         for(int i=0;i<m/2;++i) {
 
-            swap(i,m-1-i,arr.data);
+         
+               swap(arr.data[i],arr.data[m-1-i]);
 
         }
 
         for(int i=0;i<n/2;++i) {
 
-            swap(m+i,n-1-i+m,arr.data);
+        
+
+              swap(arr.data[m+i],arr.data[n-1-i+m]);
 
        }
 
 
         for(int i=0;i<arr.length/2;++i) {
 
-            swap(i,arr.length-1-i,arr.data);
-
+     
+             swap(arr.data[i],arr.data[arr.length-1-i]);
         }
 
 
@@ -377,7 +381,8 @@ static void findxandinsert(Sqlist & arr,int x) { //找到有序顺序表中数�
 
     if(array[mid]==x&&mid!=arr.length-1) {
         cout<<mid<<endl;
-        swap(mid,mid+1,array);
+    
+          swap(array[mid],array[mid+1]);
     }
 
     if(low>high) {
@@ -475,10 +480,10 @@ int main(){
     list.length=5;
 
 
-//reverselist(list);
+reverselist(list);
 
-cout<<findminint(list)<<endl;
- //display(list);
+//cout<<findminint(list)<<endl;
+display(list);
 
 }
 

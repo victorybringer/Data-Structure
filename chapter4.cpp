@@ -19,13 +19,6 @@ typedef  struct BiTNode{
 }* BiTree;
 
 
-
-
-
-
-
-
-
 typedef  struct  ThreadNode{
 
     int data;

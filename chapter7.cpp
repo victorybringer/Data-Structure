@@ -20,7 +20,7 @@ typedef struct LNode{
         this->data=data;
     }
 
-    LNode *next= nullptr;
+    LNode *next= NULL;
 
 }*LinkList;
 
@@ -170,19 +170,35 @@ void DoubleBubble(Sqlist &list) { //双向起泡,奇数趟从前往后，偶数�
 void InsertSort(LinkList &L){ //单链表插入排序
 
 
-    LNode *p,*pre,*q;
-    p = L->next->next;		// 先保存下L的第二个元素，因为下一步要将L变成只有一个元素的有序表。
-    L->next->next = NULL;	// 将L变成只有一个元素的有序表
-    // 从L的第二个元素开始遍历整个L直至表尾
-    while(p != NULL){
-        q = p->next;
-        pre = L;	// 先用pre来保存L。
-        while(pre->next !=NULL && pre->next->data < p->data) // 遍历pre所指向的有序表L，直至找到比p大的节点
-            pre = pre->next;
-        p->next = pre->next;
-        pre->next = p;
-        p = q;
-    }
+LNode *p=L->next->next;
+
+L->next->next=NULL;  //断链，初始状态是只含一个元素的有序的单链表
+
+
+while(p){
+
+
+LNode *pre=L;
+
+LNode *q=p->next;
+
+while(pre->next&&pre->next->data<p->data){  //在有序表中寻找一个比当前大的节点的前驱
+
+pre=pre->next;
+
+}
+
+
+p->next=pre->next;
+
+pre->next=p;
+
+
+p=q;
+
+
+}
+
 
 
 }
@@ -256,11 +272,11 @@ void SelectionSort(LinkList &L){ //链表的简单选择排序
     LNode *p =L->next;
 
 
-    while(p!= nullptr) {
+    while(p) {
 
         LNode * minNode = p;
 
-        for(LNode *t=p->next;t!= nullptr;t=t->next){
+        for(LNode *t=p->next;t;t=t->next){
 
             if (t->data<minNode->data)
 
@@ -672,15 +688,15 @@ int main() {
 
 
 
-    b->next=new LNode(1);;
+    b->next=new LNode(4);
 
-    b->next->next=new LNode(2);;
+    b->next->next=new LNode(2);
 
-    b->next->next->next=new LNode(3);
+    b->next->next->next=new LNode(1);
+  b->next->next->next->next=new LNode(10);
+    b->next->next->next->next->next=new LNode(3);
 
-    b->next->next->next->next=new LNode(10);;
-
-
+   
 
 
     //InsertSort(b);
@@ -696,21 +712,21 @@ int main() {
 
 //BubbleSort(b);
 
-MergeSort(list,0,8);
+//MergeSort(list,0,8);
 
 
 
 //display_Guard(list);
 
 //SelectionSort(list);
-display(list);
+//display(list);
 
    // cout<<length(b)<<endl;
 
 
 
-
-
+InsertSort(b);
+display(b);
 
 
 
